@@ -14,41 +14,48 @@ Listar as pastas
 ```
 ls 
 ```
-
-cd .. (voltar um diretório)
-
-
-mkdir (nome da pasta) - criar novos diretórios/pastas
-
-
-git status (Verifica o status do repositório)
-
-
-git add -A (Trackear o que não foi trackeado, inserir tudo)
-
-
-git commit -m (Para commitar) / git commit -am
-
-
-Diferença do commit -m para o git commit -am
-
-
-git log (lista de commits)
-
-
-git reset (--soft / --mixed / --hard)
-
-
-git checkout (Mudar a branch atual)
-
-
-git diff (Checar o que houve nas alterações) / git diff --name-only / git diff //nome do arquivo// (vê apenas a alteração feita naquele arquivo)
-
-
+(voltar um diretório)
+```
+cd .. 
+```
+(nome da pasta) - criar novos diretórios/pastas
+```
+mkdir 
+```
+(Verifica o status do repositório)
+```
+git status 
+```
+(Trackear o que não foi trackeado, inserir tudo)
+```
+git add -A 
+```
+(Para commitar) / git commit -am
+```
+git commit -m 
+```
+(lista de commits)
+```
+git log 
+```
+(--soft / --mixed / --hard)
+```
+git reset
+```
+(Mudar a branch atual)
+```
+git checkout 
+```
+(Checar o que houve nas alterações) / git diff --name-only / git diff //nome do arquivo// (vê apenas a alteração feita naquele arquivo)
+```
+git diff 
+```
+```
 git checkout HEAD -- "diff" //nome do arquivo// (retroceder até a posição)
-
-
+```
+```
 git push origin
-
-
+```
+```
 git pull origin
+```
