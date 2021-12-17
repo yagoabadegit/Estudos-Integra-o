@@ -20,4 +20,10 @@ Uma das vantagens de se ultilizar a prática de integração contínua mais faci
 
 ### Qual o foco do Jenkins:
 
-Servidor para automatização de tarefas, como build, testes e deploy de aplicações.
+- Servidor para automatização de tarefas, como build, testes e deploy de aplicações.
+- Criado em 2005 pela Sun(Hudson)
+- Open Source
+- Extensivel (Plugins)
+- Pode ser instalado no SO ou rodar standalone em um container Docker
+
+###
