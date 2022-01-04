@@ -19,3 +19,26 @@ Basicamente nossas boas praticas.
 - A transferencia de dados, geralmente, usando o protocolo HTTP
 
 O Rest, delimita algumas obrigações nessas transferencias de dados
+
+## Erros Rest 
+
+
+HTTP Status Code 
+
+Dividindo em 5 familias 
+
+Familia 100 - informacionais 
+Familia 200 - sucesso
+Familia 300 - redirecionamento
+Familia 400 - erro no cliente
+Familia 500 - erro no server
+
+Exemplo de Payload:
+
+{
+  "codigo": "COD123",
+  "mensagem": "msg",
+  "dataHora": 
+}
+
+
