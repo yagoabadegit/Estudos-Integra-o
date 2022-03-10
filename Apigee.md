@@ -34,45 +34,16 @@ msg = {
 	}
 }
 
-
 var orderId = context.getVariable('orderId');
 
 var request = JSON.stringify(msg);
 context.setVariable('request.content', request);
 ```
+# Explicando o codigo 
 
-
-
-
-
-# Montando validações em Post 
+Esse trecho você esta usando o JSON.parse para que ele faça uma tranformação na estrutura do body da requisição que é um JSON e vem na arvore do message.content, e construindo o valor ou um objeto JavaScript em um tipo que podemos trabalhar e manipular.
 
 ```
-
-validateRequest();
-
-function validateRequest() {
-    
-    var body = JSON.parse(context.getVariable('message.content'));
-    
-    var errorDescription = null;
-  
-    if (!body.data.troubleTicket.associatedDocument || !body.data.troubleTicket.customer.name || !body.data.troubleTicket.customer.subscriberId) {
-        errorDescription = 'OSB Validate action failed validation';
-    } 
-    
-    for (var i in body.data.troubleTicket.addresses) {
-        if (!body.data.troubleTicket.addresses[i].id) {
-            errorDescription = 'OSB Validate action failed validation';
-        }
-    }
-    
-    if (errorDescription) {
-        context.setVariable('validatePayloadValues.error', errorDescription);
-        context.setVariable('validatePayloadValues.fail', true);
-        context.setVariable('errorDescription.error', errorDescription);
-    }
-}
-
+var body = JSON.parse(context.getVariable('message.content'));
 
 ```
