@@ -2,7 +2,7 @@
 
 
 
-# Montando trasformações basicas em um metodo Post
+# Montando trasformações basicas em um metodo Post/sem arrays
 
 ```
 var body = JSON.parse(context.getVariable('message.content'));
@@ -24,9 +24,9 @@ msg = {
 			Campo1BackendComum3: body.data.appointment.Campo1APIComum3
 		},
 		CampoObjectBackend1: {
-			Campo1BackendComum1: body.data.issue.code,
-			Campo1BackendComum2: body.data.issue.note,
-			Campo1BackendComum3: body.data.issue.userId
+			Campo1BackendComum1: body.data.issue.Campo1APIComum1,
+			Campo1BackendComum2: body.data.issue.Campo1APIComum2,
+			Campo1BackendComum3: body.data.issue.Campo1APIComum3
 		}
 	}
 }
@@ -35,6 +35,7 @@ var orderId = context.getVariable('orderId');
 
 var request = JSON.stringify(msg);
 context.setVariable('request.content', request);
+
 ```
 # Explicando o codigo 
 
@@ -69,11 +70,83 @@ if (!body.data.campoObrigatorio1 || !body.data.campoObrigatorio2) {
 }
 
 ```
+- Neste trecho estou construindo literalemente a estrutura que o meu backend espera receber. Por que estou pegando o valor dos campos que estão vindo no payload que estou enviando(body.data......) e atribuindo eles nos campos e estruturas que o meu backend espera receber 
+
+```
+msg = {
+	order: {
+		CampoobrigatorioBackend1: body.data.campoObrigatorio1,
+		CampoobrigatorioBackend2: body.data.campoObrigatorio2,
+		CampoObjectBackend2: {
+			Campo1BackendComum1: body.data.appointment.Campo1APIComum1,
+			Campo1BackendComum2: body.data.appointment.Campo1APIComum2,
+			Campo1BackendComum3: body.data.appointment.Campo1APIComum3
+		},
+		CampoObjectBackend1: {
+			Campo1BackendComum1: body.data.issue.Campo1APIComum1,
+			Campo1BackendComum2: body.data.issue.Campo1APIComum2,
+			Campo1BackendComum3: body.data.issue.Campo1APIComum3
+		}
+	}
+}
+
+````
+
+# Montando trasformações basicas em um metodo Post/com arrays
+
+```
+
+var ArrayList = [];    
+var Array1 = [];       
+
+if(body.data.objectQueContemOArray){
+    ArrayList = body.data.objectQueContemOArray;
+    for (var i in ArrayList){
+        c = {
+            Campo1BackendComum1: ArrayList[i].Campo1APIComum1,
+            Campo1BackendComum2: ArrayList[i].Campo1APIComum2,
+            Campo1BackendComum3: ArrayList[i].Campo1APIComum1,
+        }
+        Array1.push(c);
+    }
+}
+
+
+var body = JSON.parse(context.getVariable('message.content'));
+var msg = {};
+if (!body.data.campoObrigatorio1 || !body.data.campoObrigatorio2) {
+	context.setVariable('customfault.name', 'ParameterValidation');
+	throw new Error('ParameterValidation');
+}
+
+msg = {
+	order: {
+		CampoobrigatorioBackend1: body.data.campoObrigatorio1,
+		CampoobrigatorioBackend2: body.data.campoObrigatorio2,
+		CampoObjectBackend2: {
+			Campo1BackendComum1: body.data.appointment.Campo1APIComum1,
+			Campo1BackendComum2: body.data.appointment.Campo1APIComum2,
+			Campo1BackendComum3: body.data.appointment.Campo1APIComum3
+		},
+		CampoObjectBackend1: {
+			Campo1BackendComum1: body.data.issue.Campo1APIComum1,
+			Campo1BackendComum2: body.data.issue.Campo1APIComum2,
+			Campo1BackendComum3: body.data.issue.Campo1APIComum3
+		}
+		objectQueContemOArray: {
+                ArrayList: Array1
+            }
+	}
+}
+
+var request = JSON.stringify(msg);
+context.setVariable('request.content', request);
 
 
 
 
 
+````
 
 
 
