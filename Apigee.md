@@ -2,12 +2,12 @@
 
 
 
-# Montando trasformações basicas em um metodo POst
+# Montando trasformações basicas em um metodo Post
 
 ```
 var body = JSON.parse(context.getVariable('message.content'));
 var msg = {};
-if (!body.data.correlationOrderId || !body.data.associatedDocumentId) {
+if (!body.data.campoObrigatorio1 || !body.data.campoObrigatorio2) {
 	context.setVariable('customfault.name', 'ParameterValidation');
 	throw new Error('ParameterValidation');
 }
@@ -16,20 +16,17 @@ if (!body.data.correlationOrderId || !body.data.associatedDocumentId) {
 
 msg = {
 	order: {
-		correlationOrder: body.data.correlationOrderId,
-		associatedDocument: body.data.associatedDocumentId,
-		appointment: {
-			hasSlot: body.data.appointment.hasSlot,
-			date: body.data.appointment.date,
-			mandatoryType: body.data.appointment.mandatoryType,
-			workOrderId: body.data.appointment.workOrderId
+		CampoobrigatorioBackend1: body.data.campoObrigatorio1,
+		CampoobrigatorioBackend2: body.data.campoObrigatorio2,
+		CampoObjectBackend2: {
+			Campo1BackendComum1: body.data.appointment.Campo1APIComum1,
+			Campo1BackendComum2: body.data.appointment.Campo1APIComum2,
+			Campo1BackendComum3: body.data.appointment.Campo1APIComum3
 		},
-		issue: {
-			code: body.data.issue.code,
-			observation: body.data.issue.note,
-			userId: body.data.issue.userId,
-			updateDate: body.data.issue.changeDate,
-			action: body.data.issue.action
+		CampoObjectBackend1: {
+			Campo1BackendComum1: body.data.issue.code,
+			Campo1BackendComum2: body.data.issue.note,
+			Campo1BackendComum3: body.data.issue.userId
 		}
 	}
 }
@@ -41,9 +38,44 @@ context.setVariable('request.content', request);
 ```
 # Explicando o codigo 
 
-Esse trecho você esta usando o JSON.parse para que ele faça uma tranformação na estrutura do body da requisição que é um JSON e vem na arvore do message.content, e construindo o valor ou um objeto JavaScript em um tipo que podemos trabalhar e manipular.
+- Esse trecho você esta usando o JSON.parse para que ele faça uma tranformação na estrutura do body da requisição que é um JSON que vem na arvore do message.content, e construindo o valor em um objeto JavaScript.
 
 ```
 var body = JSON.parse(context.getVariable('message.content'));
 
 ```
+
+- Criando um variavel "msg" em que seu valor é um objeto vazio.
+
+```
+
+var msg = {};
+
+```
+
+- Condição criada para verificar se os campos obrigatorios 1 e 2 estão vindo. E caso não estejam vindo caem na exceção de Error e no fim nos retornam BadRequest. 
+
+#### Campos que dever ser alterados: ####
+
+**campoObrigatorio1** =  Dependendo da necessidade do seu Swagger não só o campo como o estrutura devem ser aletrados. Ex: Poderia ser ".data.outroObject.campoObrigatorio1" ".data.campoObrigatorio1"  
+
+**campoObrigatorio2** = Dependendo da necessidade do seu Swagger não só o campo como o estrutura devem ser aletrados ".Ex: Poderia ser ".data.outroObject.campoObrigatorio2" ".data.campoObrigatorio2"
+
+```
+
+if (!body.data.campoObrigatorio1 || !body.data.campoObrigatorio2) {
+	context.setVariable('customfault.name', 'ParameterValidation');
+	throw new Error('ParameterValidation');
+}
+
+```
+
+
+
+
+
+
+
+
+
+
