@@ -4,7 +4,7 @@
 ```
 var campoRequestAntigo1 = context.getVariable('request.queryparam.campoRequestAntigo1');
 var campoRequestAntigo2 = context.getVariable('request.queryparam.campoRequestAntigo2');
-var campoSemAlteração = context.getVariable('request.queryparam.networkOwner');
+var campoSemAlteração = context.getVariable('request.queryparam.campoSemAlteração');
 
 
 
@@ -21,10 +21,10 @@ if(campoRequestAntigo2){
 if(campoSemAlteração){
     context.setVariable('request.queryparam.novoCampo3', campoSemAlteração);
 }
-
-
-
 ```
+
+
+# Montando requisições para um metodo GET
 
 # Montando trasformações basicas em um metodo Post/sem arrays
 
