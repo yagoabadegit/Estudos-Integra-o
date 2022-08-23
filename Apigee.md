@@ -1,6 +1,30 @@
 # Exemplos
 
+# Montando requisição para um metodo GET com parametros enviados via queryparam comt
+```
+var campoRequestAntigo1 = context.getVariable('request.queryparam.campoRequestAntigo1');
+var campoRequestAntigo2 = context.getVariable('request.queryparam.campoRequestAntigo2');
+var campoSemAlteração = context.getVariable('request.queryparam.networkOwner');
 
+
+
+// Remove X-QueryString and QueryParameters
+if(campoRequestAntigo1){
+    context.setVariable('request.queryparam.novoCampo1', campoRequestAntigo1);
+    context.removeVariable('request.queryparam.campoRequestAntigo1');
+}
+if(campoRequestAntigo2){
+    context.setVariable('request.queryparam.novoCampo2', campoRequestAntigo2);
+    context.removeVariable('request.queryparam.campoRequestAntigo2');
+}
+// Lembrando que caso o nome do novo request permaneça o mesmo para o backend não coloca o context.removeVariable!
+if(campoSemAlteração){
+    context.setVariable('request.queryparam.novoCampo3', campoSemAlteração);
+}
+
+
+
+```
 
 # Montando trasformações basicas em um metodo Post/sem arrays
 
