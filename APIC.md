@@ -17,3 +17,5 @@ trazer uma padronização para nossos consumidores, estes são abordados na seç
 Segurança: Toda API do grupo CNP deverá ser protegida pelos OIDCs corporativos de acordo
 com a necessidade especificados pela demanda, esta segurança deverá ser implementada de
 acordo a descrição das seções 6.
+
+# RESTFul API
